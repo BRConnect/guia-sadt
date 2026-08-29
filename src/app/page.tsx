@@ -169,7 +169,7 @@ const sadtFields: SadtFieldConfig[] = [
 	},
 	{
 		id: 'dataValidadeSenhaAno',
-		x: 784,
+		x: 764,
 		y: 158,
 		width: 80,
 		height: 21,
