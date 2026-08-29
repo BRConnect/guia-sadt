@@ -71,7 +71,7 @@ const sadtFields: SadtFieldConfig[] = [
 	{
 		id: 'dataAutorizacaoDia',
 		x: 53,
-		y: 151,
+		y: 158,
 		width: 40,
 		height: 21,
 		length: 2,
@@ -84,7 +84,7 @@ const sadtFields: SadtFieldConfig[] = [
 	{
 		id: 'dataAutorizacaoMes',
 		x: 99,
-		y: 151,
+		y: 158,
 		width: 40,
 		height: 21,
 		length: 2,
@@ -97,7 +97,7 @@ const sadtFields: SadtFieldConfig[] = [
 	{
 		id: 'dataAutorizacaoAno',
 		x: 145,
-		y: 151,
+		y: 158,
 		width: 80,
 		height: 21,
 		length: 4,
