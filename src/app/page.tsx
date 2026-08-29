@@ -31,7 +31,7 @@ const sadtFields: SadtFieldConfig[] = [
 	{
 		id: 'registroANS',
 		x: 53,
-		y: 113,
+		y: 115,
 		width: 120,
 		height: 21,
 		length: 6,
