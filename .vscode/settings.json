@@ -1,0 +1,25 @@
+{
+	"editor.codeActionsOnSave": {
+		"source.organizeImports.biome": "explicit",
+		"source.fixAll.biome": "explicit"
+	},
+	"editor.insertSpaces": false,
+	"editor.tabSize": 2,
+	"files.eol": "\n",
+	"files.trimTrailingWhitespace": true,
+	"files.insertFinalNewline": true,
+	"files.encoding": "utf8",
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "biomejs.biome",
+	"editor.wordWrap": "on",
+	"editor.wordWrapColumn": 80,
+	"cSpell.words": [
+		"esnext",
+		"geist",
+		"oklch",
+		"sadt",
+		"SADT",
+		"shadcn",
+		"tailwindcss"
+	]
+}
