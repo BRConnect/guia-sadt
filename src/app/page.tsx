@@ -50,9 +50,9 @@ const sadtFields: SadtFieldConfig[] = [
 	},
 	{
 		id: 'numeroGuiaPrincipal',
-		x: 186,
+		x: 198,
 		y: 115,
-		width: 373,
+		width: 400,
 		height: 21,
 		length: 20,
 		gap: 0,
