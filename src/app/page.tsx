@@ -2,10 +2,12 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import Image from 'next/image'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { ModeToggle } from '@/components/mode-toggle'
+import { SadtField, type SadtFieldConfig } from '@/components/sadt-field'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -25,10 +27,28 @@ const guiaSadtSchema = z.object({
 
 type GuiaSadtForm = z.infer<typeof guiaSadtSchema>
 
+const sadtFields: SadtFieldConfig[] = [
+	{
+		id: 'registroANS',
+		x: 53,
+		y: 113,
+		width: 120,
+		height: 21,
+		length: 6,
+		gap: 0,
+		fontSize: 14,
+		fontWeight: 500,
+		align: 'center',
+		type: 'number',
+	},
+]
+
 export default function Home() {
+	const [debugEnabled, setDebugEnabled] = useState(false)
 	const {
 		watch,
 		setValue,
+		reset,
 		formState: { errors },
 	} = useForm<GuiaSadtForm>({
 		resolver: zodResolver(guiaSadtSchema),
@@ -39,10 +59,14 @@ export default function Home() {
 	})
 
 	const registroANS = watch('registroANS')
-
+	const formValues = watch()
 	const registroANSPreenchido = registroANS.trim() !== ''
 	const registroANSErro = registroANSPreenchido && !!errors.registroANS
 	const registroANSValido = registroANSPreenchido && !errors.registroANS
+	const fieldsWithValues = sadtFields.map((field) => ({
+		...field,
+		value: String(formValues[field.id as keyof GuiaSadtForm] ?? ''),
+	}))
 
 	return (
 		<main className="flex h-screen flex-col overflow-hidden">
@@ -53,8 +77,19 @@ export default function Home() {
 
 				<div className="flex items-center gap-2">
 					<ModeToggle />
-					<Button>Limpar</Button> <Button>Salvar PDF</Button>
-					<Button>Imprimir</Button>
+					<Button
+						variant={debugEnabled ? 'secondary' : 'outline'}
+						type="button"
+						aria-pressed={debugEnabled}
+						onClick={() => setDebugEnabled((enabled) => !enabled)}
+					>
+						Debug: {debugEnabled ? 'ativo' : 'inativo'}
+					</Button>
+					<Button type="button" variant="outline" onClick={() => reset()}>
+						Limpar
+					</Button>
+					<Button type="button">Salvar PDF</Button>
+					<Button type="button">Imprimir</Button>
 				</div>
 			</header>
 
@@ -68,7 +103,11 @@ export default function Home() {
 							</p>
 						</div>
 
-						<form id="guia-sadt-form" className="space-y-4">
+						<form
+							id="guia-sadt-form"
+							className="space-y-4"
+							onSubmit={(event) => event.preventDefault()}
+						>
 							<div className="space-y-1">
 								<Label htmlFor="registroANS">1. Registro ANS</Label>
 
@@ -79,6 +118,10 @@ export default function Home() {
 									maxLength={6}
 									placeholder="000000"
 									value={registroANS}
+									aria-describedby={
+										registroANSErro ? 'registroANS-error' : undefined
+									}
+									aria-invalid={registroANSErro}
 									onChange={(event) => {
 										const value = event.target.value
 											.replace(/\D/g, '')
@@ -100,7 +143,10 @@ export default function Home() {
 								/>
 
 								{registroANSErro && (
-									<p className="text-xs font-medium text-red-500">
+									<p
+										id="registroANS-error"
+										className="text-xs font-medium text-red-500"
+									>
 										{errors.registroANS?.message}
 									</p>
 								)}
@@ -114,6 +160,7 @@ export default function Home() {
 						className="relative mx-auto w-full max-w-[1683px]"
 						style={{
 							aspectRatio: `${IMAGE_WIDTH} / ${IMAGE_HEIGHT}`,
+							containerType: 'size',
 						}}
 					>
 						<Image
@@ -124,6 +171,16 @@ export default function Home() {
 							priority
 							className="absolute inset-0 block h-full w-full"
 						/>
+
+						{fieldsWithValues.map((field) => (
+							<SadtField
+								key={field.id}
+								field={field}
+								imageWidth={IMAGE_WIDTH}
+								imageHeight={IMAGE_HEIGHT}
+								debug={debugEnabled}
+							/>
+						))}
 					</div>
 				</section>
 			</section>

@@ -1,6 +1,8 @@
+// biome-ignore-all lint/a11y/noLabelWithoutControl: The generic primitive receives htmlFor from each caller.
+
 'use client'
 
-import * as React from 'react'
+import type * as React from 'react'
 
 import { cn } from '@/lib/utils'
 
