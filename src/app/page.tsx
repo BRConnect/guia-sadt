@@ -30,6 +30,13 @@ const guiaSadtSchema = z.object({
 			(value) => value === '' || /^\d{20}$/.test(value),
 			'O Número da guia principal deve conter exatamente 20 dígitos.',
 		),
+	dataAutorizacao: z
+		.string()
+		.trim()
+		.refine(
+			(value) => value === '' || /^\d{8}$/.test(value),
+			'A Data da Autorização deve conter 8 dígitos no formato DDMMAAAA.',
+		),
 })
 
 type GuiaSadtForm = z.infer<typeof guiaSadtSchema>
@@ -61,6 +68,45 @@ const sadtFields: SadtFieldConfig[] = [
 		align: 'center',
 		type: 'number',
 	},
+	{
+		id: 'dataAutorizacaoDia',
+		x: 53,
+		y: 151,
+		width: 40,
+		height: 21,
+		length: 2,
+		gap: 0,
+		fontSize: 14,
+		fontWeight: 500,
+		align: 'center',
+		type: 'number',
+	},
+	{
+		id: 'dataAutorizacaoMes',
+		x: 99,
+		y: 151,
+		width: 40,
+		height: 21,
+		length: 2,
+		gap: 0,
+		fontSize: 14,
+		fontWeight: 500,
+		align: 'center',
+		type: 'number',
+	},
+	{
+		id: 'dataAutorizacaoAno',
+		x: 145,
+		y: 151,
+		width: 80,
+		height: 21,
+		length: 4,
+		gap: 0,
+		fontSize: 14,
+		fontWeight: 500,
+		align: 'center',
+		type: 'number',
+	},
 ]
 
 export default function Home() {
@@ -76,12 +122,15 @@ export default function Home() {
 		defaultValues: {
 			registroANS: '',
 			numeroGuiaPrincipal: '',
+			dataAutorizacao: '',
 		},
 	})
 
 	const registroANS = watch('registroANS')
 	const numeroGuiaPrincipal = watch('numeroGuiaPrincipal')
+	const dataAutorizacao = watch('dataAutorizacao')
 	const formValues = watch()
+
 	const registroANSPreenchido = registroANS.trim() !== ''
 	const registroANSErro = registroANSPreenchido && !!errors.registroANS
 	const registroANSValido = registroANSPreenchido && !errors.registroANS
@@ -90,11 +139,24 @@ export default function Home() {
 		numeroGuiaPrincipalPreenchido && !!errors.numeroGuiaPrincipal
 	const numeroGuiaPrincipalValido =
 		numeroGuiaPrincipalPreenchido && !errors.numeroGuiaPrincipal
+	const dataAutorizacaoPreenchida = dataAutorizacao.trim() !== ''
+	const dataAutorizacaoErro =
+		dataAutorizacaoPreenchida && !!errors.dataAutorizacao
+	const dataAutorizacaoValida =
+		dataAutorizacaoPreenchida && !errors.dataAutorizacao
 
-	const fieldsWithValues = sadtFields.map((field) => ({
-		...field,
-		value: String(formValues[field.id as keyof GuiaSadtForm] ?? ''),
-	}))
+	const fieldsWithValues = sadtFields.map((field) => {
+		const value =
+			field.id === 'dataAutorizacaoDia'
+				? dataAutorizacao.slice(0, 2)
+				: field.id === 'dataAutorizacaoMes'
+					? dataAutorizacao.slice(2, 4)
+					: field.id === 'dataAutorizacaoAno'
+						? dataAutorizacao.slice(4, 8)
+						: String(formValues[field.id as keyof GuiaSadtForm] ?? '')
+
+		return { ...field, value }
+	})
 
 	return (
 		<main className="flex h-screen flex-col overflow-hidden">
@@ -224,6 +286,50 @@ export default function Home() {
 										className="text-xs font-medium text-red-500"
 									>
 										{errors.numeroGuiaPrincipal?.message}
+									</p>
+								)}
+							</div>
+
+							<div className="space-y-1">
+								<Label htmlFor="dataAutorizacao">4. Data da Autorização</Label>
+
+								<Input
+									id="dataAutorizacao"
+									name="dataAutorizacao"
+									inputMode="numeric"
+									maxLength={8}
+									placeholder="DDMMAAAA"
+									value={dataAutorizacao}
+									aria-describedby={
+										dataAutorizacaoErro ? 'dataAutorizacao-error' : undefined
+									}
+									aria-invalid={dataAutorizacaoErro}
+									onChange={(event) => {
+										const value = event.target.value
+											.replace(/\D/g, '')
+											.slice(0, 8)
+
+										setValue('dataAutorizacao', value, {
+											shouldValidate: true,
+											shouldDirty: true,
+											shouldTouch: true,
+										})
+									}}
+									className={
+										dataAutorizacaoErro
+											? 'border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500'
+											: dataAutorizacaoValida
+												? 'border-green-500 focus-visible:border-green-500 focus-visible:ring-green-500'
+												: ''
+									}
+								/>
+
+								{dataAutorizacaoErro && (
+									<p
+										id="dataAutorizacao-error"
+										className="text-xs font-medium text-red-500"
+									>
+										{errors.dataAutorizacao?.message}
 									</p>
 								)}
 							</div>
