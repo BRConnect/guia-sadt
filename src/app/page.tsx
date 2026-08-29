@@ -23,6 +23,13 @@ const guiaSadtSchema = z.object({
 			(value) => value === '' || /^\d{6}$/.test(value),
 			'O Registro ANS deve conter exatamente 6 dígitos.',
 		),
+	numeroGuiaPrincipal: z
+		.string()
+		.trim()
+		.refine(
+			(value) => value === '' || /^\d{20}$/.test(value),
+			'O Número da guia principal deve conter exatamente 20 dígitos.',
+		),
 })
 
 type GuiaSadtForm = z.infer<typeof guiaSadtSchema>
@@ -35,6 +42,19 @@ const sadtFields: SadtFieldConfig[] = [
 		width: 120,
 		height: 21,
 		length: 6,
+		gap: 0,
+		fontSize: 14,
+		fontWeight: 500,
+		align: 'center',
+		type: 'number',
+	},
+	{
+		id: 'numeroGuiaPrincipal',
+		x: 186,
+		y: 115,
+		width: 373,
+		height: 21,
+		length: 20,
 		gap: 0,
 		fontSize: 14,
 		fontWeight: 500,
@@ -55,14 +75,22 @@ export default function Home() {
 		mode: 'onChange',
 		defaultValues: {
 			registroANS: '',
+			numeroGuiaPrincipal: '',
 		},
 	})
 
 	const registroANS = watch('registroANS')
+	const numeroGuiaPrincipal = watch('numeroGuiaPrincipal')
 	const formValues = watch()
 	const registroANSPreenchido = registroANS.trim() !== ''
 	const registroANSErro = registroANSPreenchido && !!errors.registroANS
 	const registroANSValido = registroANSPreenchido && !errors.registroANS
+	const numeroGuiaPrincipalPreenchido = numeroGuiaPrincipal.trim() !== ''
+	const numeroGuiaPrincipalErro =
+		numeroGuiaPrincipalPreenchido && !!errors.numeroGuiaPrincipal
+	const numeroGuiaPrincipalValido =
+		numeroGuiaPrincipalPreenchido && !errors.numeroGuiaPrincipal
+
 	const fieldsWithValues = sadtFields.map((field) => ({
 		...field,
 		value: String(formValues[field.id as keyof GuiaSadtForm] ?? ''),
@@ -148,6 +176,54 @@ export default function Home() {
 										className="text-xs font-medium text-red-500"
 									>
 										{errors.registroANS?.message}
+									</p>
+								)}
+							</div>
+
+							<div className="space-y-1">
+								<Label htmlFor="numeroGuiaPrincipal">
+									3. Número da guia principal
+								</Label>
+
+								<Input
+									id="numeroGuiaPrincipal"
+									name="numeroGuiaPrincipal"
+									inputMode="numeric"
+									maxLength={20}
+									placeholder="00000000000000000000"
+									value={numeroGuiaPrincipal}
+									aria-describedby={
+										numeroGuiaPrincipalErro
+											? 'numeroGuiaPrincipal-error'
+											: undefined
+									}
+									aria-invalid={numeroGuiaPrincipalErro}
+									onChange={(event) => {
+										const value = event.target.value
+											.replace(/\D/g, '')
+											.slice(0, 20)
+
+										setValue('numeroGuiaPrincipal', value, {
+											shouldValidate: true,
+											shouldDirty: true,
+											shouldTouch: true,
+										})
+									}}
+									className={
+										numeroGuiaPrincipalErro
+											? 'border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500'
+											: numeroGuiaPrincipalValido
+												? 'border-green-500 focus-visible:border-green-500 focus-visible:ring-green-500'
+												: ''
+									}
+								/>
+
+								{numeroGuiaPrincipalErro && (
+									<p
+										id="numeroGuiaPrincipal-error"
+										className="text-xs font-medium text-red-500"
+									>
+										{errors.numeroGuiaPrincipal?.message}
 									</p>
 								)}
 							</div>
