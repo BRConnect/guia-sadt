@@ -37,6 +37,27 @@ const guiaSadtSchema = z.object({
 			(value) => value === '' || /^\d{8}$/.test(value),
 			'A Data da Autorização deve conter 8 dígitos no formato DDMMAAAA.',
 		),
+	senha: z
+		.string()
+		.trim()
+		.refine(
+			(value) => value === '' || /^\d{20}$/.test(value),
+			'A Senha deve conter exatamente 20 dígitos.',
+		),
+	dataValidadeSenha: z
+		.string()
+		.trim()
+		.refine(
+			(value) => value === '' || /^\d{8}$/.test(value),
+			'A Data de Validade da Senha deve conter 8 dígitos no formato DDMMAAAA.',
+		),
+	numeroGuiaOperadora: z
+		.string()
+		.trim()
+		.refine(
+			(value) => value === '' || /^\d{20}$/.test(value),
+			'O Número da Guia Atribuído pela Operadora deve conter exatamente 20 dígitos.',
+		),
 })
 
 type GuiaSadtForm = z.infer<typeof guiaSadtSchema>
@@ -107,6 +128,71 @@ const sadtFields: SadtFieldConfig[] = [
 		align: 'center',
 		type: 'number',
 	},
+	{
+		id: 'senha',
+		x: 248,
+		y: 158,
+		width: 400,
+		height: 21,
+		length: 20,
+		gap: 0,
+		fontSize: 14,
+		fontWeight: 500,
+		align: 'center',
+		type: 'number',
+	},
+	{
+		id: 'dataValidadeSenhaDia',
+		x: 671,
+		y: 158,
+		width: 40,
+		height: 21,
+		length: 2,
+		gap: 0,
+		fontSize: 14,
+		fontWeight: 500,
+		align: 'center',
+		type: 'number',
+	},
+	{
+		id: 'dataValidadeSenhaMes',
+		x: 718,
+		y: 158,
+		width: 40,
+		height: 21,
+		length: 2,
+		gap: 0,
+		fontSize: 14,
+		fontWeight: 500,
+		align: 'center',
+		type: 'number',
+	},
+	{
+		id: 'dataValidadeSenhaAno',
+		x: 784,
+		y: 158,
+		width: 80,
+		height: 21,
+		length: 4,
+		gap: 0,
+		fontSize: 14,
+		fontWeight: 500,
+		align: 'center',
+		type: 'number',
+	},
+	{
+		id: 'numeroGuiaOperadora',
+		x: 867,
+		y: 158,
+		width: 400,
+		height: 21,
+		length: 20,
+		gap: 0,
+		fontSize: 14,
+		fontWeight: 500,
+		align: 'center',
+		type: 'number',
+	},
 ]
 
 export default function Home() {
@@ -123,12 +209,18 @@ export default function Home() {
 			registroANS: '',
 			numeroGuiaPrincipal: '',
 			dataAutorizacao: '',
+			senha: '',
+			dataValidadeSenha: '',
+			numeroGuiaOperadora: '',
 		},
 	})
 
 	const registroANS = watch('registroANS')
 	const numeroGuiaPrincipal = watch('numeroGuiaPrincipal')
 	const dataAutorizacao = watch('dataAutorizacao')
+	const senha = watch('senha')
+	const dataValidadeSenha = watch('dataValidadeSenha')
+	const numeroGuiaOperadora = watch('numeroGuiaOperadora')
 	const formValues = watch()
 
 	const registroANSPreenchido = registroANS.trim() !== ''
@@ -144,6 +236,19 @@ export default function Home() {
 		dataAutorizacaoPreenchida && !!errors.dataAutorizacao
 	const dataAutorizacaoValida =
 		dataAutorizacaoPreenchida && !errors.dataAutorizacao
+	const senhaPreenchida = senha.trim() !== ''
+	const senhaErro = senhaPreenchida && !!errors.senha
+	const senhaValida = senhaPreenchida && !errors.senha
+	const dataValidadeSenhaPreenchida = dataValidadeSenha.trim() !== ''
+	const dataValidadeSenhaErro =
+		dataValidadeSenhaPreenchida && !!errors.dataValidadeSenha
+	const dataValidadeSenhaValida =
+		dataValidadeSenhaPreenchida && !errors.dataValidadeSenha
+	const numeroGuiaOperadoraPreenchido = numeroGuiaOperadora.trim() !== ''
+	const numeroGuiaOperadoraErro =
+		numeroGuiaOperadoraPreenchido && !!errors.numeroGuiaOperadora
+	const numeroGuiaOperadoraValido =
+		numeroGuiaOperadoraPreenchido && !errors.numeroGuiaOperadora
 
 	const fieldsWithValues = sadtFields.map((field) => {
 		const value =
@@ -153,14 +258,22 @@ export default function Home() {
 					? dataAutorizacao.slice(2, 4)
 					: field.id === 'dataAutorizacaoAno'
 						? dataAutorizacao.slice(4, 8)
-						: String(formValues[field.id as keyof GuiaSadtForm] ?? '')
+						: field.id === 'dataValidadeSenhaDia'
+							? dataValidadeSenha.slice(0, 2)
+							: field.id === 'dataValidadeSenhaMes'
+								? dataValidadeSenha.slice(2, 4)
+								: field.id === 'dataValidadeSenhaAno'
+									? dataValidadeSenha.slice(4, 8)
+									: String(formValues[field.id as keyof GuiaSadtForm] ?? '')
 
 		return { ...field, value }
 	})
 
+	const handlePrint = () => window.print()
+
 	return (
-		<main className="flex h-screen flex-col overflow-hidden">
-			<header className="flex h-14 shrink-0 items-center justify-between border-b bg-background px-4">
+		<main className="flex h-screen flex-col overflow-hidden print:block print:h-auto">
+			<header className="flex h-14 shrink-0 items-center justify-between border-b bg-background px-4 print:hidden">
 				<div className="flex items-center gap-2">
 					<h1 className="text-sm font-semibold">Guia SADT</h1>
 				</div>
@@ -178,13 +291,17 @@ export default function Home() {
 					<Button type="button" variant="outline" onClick={() => reset()}>
 						Limpar
 					</Button>
-					<Button type="button">Salvar PDF</Button>
-					<Button type="button">Imprimir</Button>
+					<Button type="button" onClick={handlePrint}>
+						Salvar PDF
+					</Button>
+					<Button type="button" variant="outline" onClick={handlePrint}>
+						Imprimir
+					</Button>
 				</div>
 			</header>
 
-			<section className="flex min-h-0 flex-1">
-				<aside className="w-80 shrink-0 overflow-y-auto border-r bg-background p-4">
+			<section className="flex min-h-0 flex-1 print:block print:min-h-0">
+				<aside className="w-80 shrink-0 overflow-y-auto border-r bg-background p-4 print:hidden">
 					<div className="space-y-4">
 						<div>
 							<h2 className="text-sm font-semibold">Dados da guia</h2>
@@ -333,13 +450,151 @@ export default function Home() {
 									</p>
 								)}
 							</div>
+
+							<div className="space-y-1">
+								<Label htmlFor="senha">5. Senha</Label>
+
+								<Input
+									id="senha"
+									name="senha"
+									inputMode="numeric"
+									maxLength={20}
+									placeholder="00000000000000000000"
+									value={senha}
+									aria-describedby={senhaErro ? 'senha-error' : undefined}
+									aria-invalid={senhaErro}
+									onChange={(event) => {
+										const value = event.target.value
+											.replace(/\D/g, '')
+											.slice(0, 20)
+
+										setValue('senha', value, {
+											shouldValidate: true,
+											shouldDirty: true,
+											shouldTouch: true,
+										})
+									}}
+									className={
+										senhaErro
+											? 'border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500'
+											: senhaValida
+												? 'border-green-500 focus-visible:border-green-500 focus-visible:ring-green-500'
+												: ''
+									}
+								/>
+
+								{senhaErro && (
+									<p
+										id="senha-error"
+										className="text-xs font-medium text-red-500"
+									>
+										{errors.senha?.message}
+									</p>
+								)}
+							</div>
+
+							<div className="space-y-1">
+								<Label htmlFor="dataValidadeSenha">
+									6. Data de Validade da Senha
+								</Label>
+
+								<Input
+									id="dataValidadeSenha"
+									name="dataValidadeSenha"
+									inputMode="numeric"
+									maxLength={8}
+									placeholder="DDMMAAAA"
+									value={dataValidadeSenha}
+									aria-describedby={
+										dataValidadeSenhaErro
+											? 'dataValidadeSenha-error'
+											: undefined
+									}
+									aria-invalid={dataValidadeSenhaErro}
+									onChange={(event) => {
+										const value = event.target.value
+											.replace(/\D/g, '')
+											.slice(0, 8)
+
+										setValue('dataValidadeSenha', value, {
+											shouldValidate: true,
+											shouldDirty: true,
+											shouldTouch: true,
+										})
+									}}
+									className={
+										dataValidadeSenhaErro
+											? 'border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500'
+											: dataValidadeSenhaValida
+												? 'border-green-500 focus-visible:border-green-500 focus-visible:ring-green-500'
+												: ''
+									}
+								/>
+
+								{dataValidadeSenhaErro && (
+									<p
+										id="dataValidadeSenha-error"
+										className="text-xs font-medium text-red-500"
+									>
+										{errors.dataValidadeSenha?.message}
+									</p>
+								)}
+							</div>
+
+							<div className="space-y-1">
+								<Label htmlFor="numeroGuiaOperadora">
+									7. Número da Guia Atribuído pela Operadora
+								</Label>
+
+								<Input
+									id="numeroGuiaOperadora"
+									name="numeroGuiaOperadora"
+									inputMode="numeric"
+									maxLength={20}
+									placeholder="00000000000000000000"
+									value={numeroGuiaOperadora}
+									aria-describedby={
+										numeroGuiaOperadoraErro
+											? 'numeroGuiaOperadora-error'
+											: undefined
+									}
+									aria-invalid={numeroGuiaOperadoraErro}
+									onChange={(event) => {
+										const value = event.target.value
+											.replace(/\D/g, '')
+											.slice(0, 20)
+
+										setValue('numeroGuiaOperadora', value, {
+											shouldValidate: true,
+											shouldDirty: true,
+											shouldTouch: true,
+										})
+									}}
+									className={
+										numeroGuiaOperadoraErro
+											? 'border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500'
+											: numeroGuiaOperadoraValido
+												? 'border-green-500 focus-visible:border-green-500 focus-visible:ring-green-500'
+												: ''
+									}
+								/>
+
+								{numeroGuiaOperadoraErro && (
+									<p
+										id="numeroGuiaOperadora-error"
+										className="text-xs font-medium text-red-500"
+									>
+										{errors.numeroGuiaOperadora?.message}
+									</p>
+								)}
+							</div>
 						</form>
 					</div>
 				</aside>
 
-				<section className="min-w-0 flex-1 overflow-auto bg-zinc-100 p-6">
+				<section className="min-w-0 flex-1 overflow-auto bg-zinc-100 p-6 print:overflow-visible print:bg-white print:p-0">
 					<div
-						className="relative mx-auto w-full max-w-[1683px]"
+						className="relative mx-auto w-full max-w-[1683px] print:max-w-none"
 						style={{
 							aspectRatio: `${IMAGE_WIDTH} / ${IMAGE_HEIGHT}`,
 							containerType: 'size',
