@@ -40,6 +40,14 @@ export default function Home() {
 			nome: '',
 			cartaoSUS: '',
 			atendimentoRN: '',
+			codigoOperadora: '',
+			nomeContratado: '',
+			nomeProfissionalSolicitante: '',
+			conselhoProfissional: '',
+			numeroConselho: '',
+			uf: '',
+			codigoCBO: '',
+			assinaturaProfissionalSolicitante: '',
 		},
 	})
 

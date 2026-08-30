@@ -14,6 +14,14 @@ export type GuiaSadtForm = {
 	nome: string
 	cartaoSUS: string
 	atendimentoRN: string
+	codigoOperadora: string
+	nomeContratado: string
+	nomeProfissionalSolicitante: string
+	conselhoProfissional: string
+	numeroConselho: string
+	uf: string
+	codigoCBO: string
+	assinaturaProfissionalSolicitante: string
 }
 
 export type GuiaSadtFieldName = keyof GuiaSadtForm
