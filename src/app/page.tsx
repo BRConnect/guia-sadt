@@ -4,196 +4,19 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import Image from 'next/image'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
-
+import {
+	type GuiaSadtFieldName,
+	type GuiaSadtForm,
+	guiaSadtFields,
+	guiaSadtSchema,
+} from '@/components/guia-sadt/fields'
+import { GuiaSadtFieldInput } from '@/components/guia-sadt/guia-sadt-field-input'
 import { ModeToggle } from '@/components/mode-toggle'
-import { SadtField, type SadtFieldConfig } from '@/components/sadt-field'
+import { SadtField } from '@/components/sadt-field'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 
 const IMAGE_WIDTH = 1683
 const IMAGE_HEIGHT = 1190
-
-const guiaSadtSchema = z.object({
-	registroANS: z
-		.string()
-		.trim()
-		.refine(
-			(value) => value === '' || /^\d{6}$/.test(value),
-			'O Registro ANS deve conter exatamente 6 dígitos.',
-		),
-	numeroGuiaPrincipal: z
-		.string()
-		.trim()
-		.refine(
-			(value) => value === '' || /^\d{20}$/.test(value),
-			'O Número da guia principal deve conter exatamente 20 dígitos.',
-		),
-	dataAutorizacao: z
-		.string()
-		.trim()
-		.refine(
-			(value) => value === '' || /^\d{8}$/.test(value),
-			'A Data da Autorização deve conter 8 dígitos no formato DDMMAAAA.',
-		),
-	senha: z
-		.string()
-		.trim()
-		.refine(
-			(value) => value === '' || /^\d{20}$/.test(value),
-			'A Senha deve conter exatamente 20 dígitos.',
-		),
-	dataValidadeSenha: z
-		.string()
-		.trim()
-		.refine(
-			(value) => value === '' || /^\d{8}$/.test(value),
-			'A Data de Validade da Senha deve conter 8 dígitos no formato DDMMAAAA.',
-		),
-	numeroGuiaOperadora: z
-		.string()
-		.trim()
-		.refine(
-			(value) => value === '' || /^\d{20}$/.test(value),
-			'O Número da Guia Atribuído pela Operadora deve conter exatamente 20 dígitos.',
-		),
-})
-
-type GuiaSadtForm = z.infer<typeof guiaSadtSchema>
-
-const sadtFields: SadtFieldConfig[] = [
-	{
-		id: 'registroANS',
-		x: 53,
-		y: 115,
-		width: 120,
-		height: 21,
-		length: 6,
-		gap: 0,
-		fontSize: 14,
-		fontWeight: 500,
-		align: 'center',
-		type: 'number',
-	},
-	{
-		id: 'numeroGuiaPrincipal',
-		x: 198,
-		y: 115,
-		width: 400,
-		height: 21,
-		length: 20,
-		gap: 0,
-		fontSize: 14,
-		fontWeight: 500,
-		align: 'center',
-		type: 'number',
-	},
-	{
-		id: 'dataAutorizacaoDia',
-		x: 53,
-		y: 158,
-		width: 40,
-		height: 21,
-		length: 2,
-		gap: 0,
-		fontSize: 14,
-		fontWeight: 500,
-		align: 'center',
-		type: 'number',
-	},
-	{
-		id: 'dataAutorizacaoMes',
-		x: 99,
-		y: 158,
-		width: 40,
-		height: 21,
-		length: 2,
-		gap: 0,
-		fontSize: 14,
-		fontWeight: 500,
-		align: 'center',
-		type: 'number',
-	},
-	{
-		id: 'dataAutorizacaoAno',
-		x: 145,
-		y: 158,
-		width: 80,
-		height: 21,
-		length: 4,
-		gap: 0,
-		fontSize: 14,
-		fontWeight: 500,
-		align: 'center',
-		type: 'number',
-	},
-	{
-		id: 'senha',
-		x: 248,
-		y: 158,
-		width: 400,
-		height: 21,
-		length: 20,
-		gap: 0,
-		fontSize: 14,
-		fontWeight: 500,
-		align: 'center',
-		type: 'number',
-	},
-	{
-		id: 'dataValidadeSenhaDia',
-		x: 671,
-		y: 158,
-		width: 40,
-		height: 21,
-		length: 2,
-		gap: 0,
-		fontSize: 14,
-		fontWeight: 500,
-		align: 'center',
-		type: 'number',
-	},
-	{
-		id: 'dataValidadeSenhaMes',
-		x: 718,
-		y: 158,
-		width: 40,
-		height: 21,
-		length: 2,
-		gap: 0,
-		fontSize: 14,
-		fontWeight: 500,
-		align: 'center',
-		type: 'number',
-	},
-	{
-		id: 'dataValidadeSenhaAno',
-		x: 764,
-		y: 158,
-		width: 80,
-		height: 21,
-		length: 4,
-		gap: 0,
-		fontSize: 14,
-		fontWeight: 500,
-		align: 'center',
-		type: 'number',
-	},
-	{
-		id: 'numeroGuiaOperadora',
-		x: 867,
-		y: 158,
-		width: 400,
-		height: 21,
-		length: 20,
-		gap: 0,
-		fontSize: 14,
-		fontWeight: 500,
-		align: 'center',
-		type: 'number',
-	},
-]
 
 export default function Home() {
 	const [debugEnabled, setDebugEnabled] = useState(false)
@@ -215,58 +38,23 @@ export default function Home() {
 		},
 	})
 
-	const registroANS = watch('registroANS')
-	const numeroGuiaPrincipal = watch('numeroGuiaPrincipal')
-	const dataAutorizacao = watch('dataAutorizacao')
-	const senha = watch('senha')
-	const dataValidadeSenha = watch('dataValidadeSenha')
-	const numeroGuiaOperadora = watch('numeroGuiaOperadora')
 	const formValues = watch()
 
-	const registroANSPreenchido = registroANS.trim() !== ''
-	const registroANSErro = registroANSPreenchido && !!errors.registroANS
-	const registroANSValido = registroANSPreenchido && !errors.registroANS
-	const numeroGuiaPrincipalPreenchido = numeroGuiaPrincipal.trim() !== ''
-	const numeroGuiaPrincipalErro =
-		numeroGuiaPrincipalPreenchido && !!errors.numeroGuiaPrincipal
-	const numeroGuiaPrincipalValido =
-		numeroGuiaPrincipalPreenchido && !errors.numeroGuiaPrincipal
-	const dataAutorizacaoPreenchida = dataAutorizacao.trim() !== ''
-	const dataAutorizacaoErro =
-		dataAutorizacaoPreenchida && !!errors.dataAutorizacao
-	const dataAutorizacaoValida =
-		dataAutorizacaoPreenchida && !errors.dataAutorizacao
-	const senhaPreenchida = senha.trim() !== ''
-	const senhaErro = senhaPreenchida && !!errors.senha
-	const senhaValida = senhaPreenchida && !errors.senha
-	const dataValidadeSenhaPreenchida = dataValidadeSenha.trim() !== ''
-	const dataValidadeSenhaErro =
-		dataValidadeSenhaPreenchida && !!errors.dataValidadeSenha
-	const dataValidadeSenhaValida =
-		dataValidadeSenhaPreenchida && !errors.dataValidadeSenha
-	const numeroGuiaOperadoraPreenchido = numeroGuiaOperadora.trim() !== ''
-	const numeroGuiaOperadoraErro =
-		numeroGuiaOperadoraPreenchido && !!errors.numeroGuiaOperadora
-	const numeroGuiaOperadoraValido =
-		numeroGuiaOperadoraPreenchido && !errors.numeroGuiaOperadora
+	const handleFieldChange = (name: GuiaSadtFieldName, value: string) => {
+		setValue(name, value, {
+			shouldValidate: true,
+			shouldDirty: true,
+			shouldTouch: true,
+		})
+	}
 
-	const fieldsWithValues = sadtFields.map((field) => {
-		const value =
-			field.id === 'dataAutorizacaoDia'
-				? dataAutorizacao.slice(0, 2)
-				: field.id === 'dataAutorizacaoMes'
-					? dataAutorizacao.slice(2, 4)
-					: field.id === 'dataAutorizacaoAno'
-						? dataAutorizacao.slice(4, 8)
-						: field.id === 'dataValidadeSenhaDia'
-							? dataValidadeSenha.slice(0, 2)
-							: field.id === 'dataValidadeSenhaMes'
-								? dataValidadeSenha.slice(2, 4)
-								: field.id === 'dataValidadeSenhaAno'
-									? dataValidadeSenha.slice(4, 8)
-									: String(formValues[field.id as keyof GuiaSadtForm] ?? '')
+	const fieldsWithValues = guiaSadtFields.flatMap((field) => {
+		const fieldValue = formValues[field.name] ?? ''
 
-		return { ...field, value }
+		return field.overlayFields.map((overlayField) => ({
+			...overlayField,
+			value: field.getOverlayValue(overlayField.id, fieldValue),
+		}))
 	})
 
 	const handlePrint = () => window.print()
@@ -315,279 +103,15 @@ export default function Home() {
 							className="space-y-4"
 							onSubmit={(event) => event.preventDefault()}
 						>
-							<div className="space-y-1">
-								<Label htmlFor="registroANS">1. Registro ANS</Label>
-
-								<Input
-									id="registroANS"
-									name="registroANS"
-									inputMode="numeric"
-									maxLength={6}
-									placeholder="000000"
-									value={registroANS}
-									aria-describedby={
-										registroANSErro ? 'registroANS-error' : undefined
-									}
-									aria-invalid={registroANSErro}
-									onChange={(event) => {
-										const value = event.target.value
-											.replace(/\D/g, '')
-											.slice(0, 6)
-
-										setValue('registroANS', value, {
-											shouldValidate: true,
-											shouldDirty: true,
-											shouldTouch: true,
-										})
-									}}
-									className={
-										registroANSErro
-											? 'border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500'
-											: registroANSValido
-												? 'border-green-500 focus-visible:border-green-500 focus-visible:ring-green-500'
-												: ''
-									}
+							{guiaSadtFields.map((field) => (
+								<GuiaSadtFieldInput
+									key={field.name}
+									field={field}
+									value={formValues[field.name] ?? ''}
+									error={errors[field.name]?.message?.toString()}
+									onChange={(value) => handleFieldChange(field.name, value)}
 								/>
-
-								{registroANSErro && (
-									<p
-										id="registroANS-error"
-										className="text-xs font-medium text-red-500"
-									>
-										{errors.registroANS?.message}
-									</p>
-								)}
-							</div>
-
-							<div className="space-y-1">
-								<Label htmlFor="numeroGuiaPrincipal">
-									3. Número da guia principal
-								</Label>
-
-								<Input
-									id="numeroGuiaPrincipal"
-									name="numeroGuiaPrincipal"
-									inputMode="numeric"
-									maxLength={20}
-									placeholder="00000000000000000000"
-									value={numeroGuiaPrincipal}
-									aria-describedby={
-										numeroGuiaPrincipalErro
-											? 'numeroGuiaPrincipal-error'
-											: undefined
-									}
-									aria-invalid={numeroGuiaPrincipalErro}
-									onChange={(event) => {
-										const value = event.target.value
-											.replace(/\D/g, '')
-											.slice(0, 20)
-
-										setValue('numeroGuiaPrincipal', value, {
-											shouldValidate: true,
-											shouldDirty: true,
-											shouldTouch: true,
-										})
-									}}
-									className={
-										numeroGuiaPrincipalErro
-											? 'border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500'
-											: numeroGuiaPrincipalValido
-												? 'border-green-500 focus-visible:border-green-500 focus-visible:ring-green-500'
-												: ''
-									}
-								/>
-
-								{numeroGuiaPrincipalErro && (
-									<p
-										id="numeroGuiaPrincipal-error"
-										className="text-xs font-medium text-red-500"
-									>
-										{errors.numeroGuiaPrincipal?.message}
-									</p>
-								)}
-							</div>
-
-							<div className="space-y-1">
-								<Label htmlFor="dataAutorizacao">4. Data da Autorização</Label>
-
-								<Input
-									id="dataAutorizacao"
-									name="dataAutorizacao"
-									inputMode="numeric"
-									maxLength={8}
-									placeholder="DDMMAAAA"
-									value={dataAutorizacao}
-									aria-describedby={
-										dataAutorizacaoErro ? 'dataAutorizacao-error' : undefined
-									}
-									aria-invalid={dataAutorizacaoErro}
-									onChange={(event) => {
-										const value = event.target.value
-											.replace(/\D/g, '')
-											.slice(0, 8)
-
-										setValue('dataAutorizacao', value, {
-											shouldValidate: true,
-											shouldDirty: true,
-											shouldTouch: true,
-										})
-									}}
-									className={
-										dataAutorizacaoErro
-											? 'border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500'
-											: dataAutorizacaoValida
-												? 'border-green-500 focus-visible:border-green-500 focus-visible:ring-green-500'
-												: ''
-									}
-								/>
-
-								{dataAutorizacaoErro && (
-									<p
-										id="dataAutorizacao-error"
-										className="text-xs font-medium text-red-500"
-									>
-										{errors.dataAutorizacao?.message}
-									</p>
-								)}
-							</div>
-
-							<div className="space-y-1">
-								<Label htmlFor="senha">5. Senha</Label>
-
-								<Input
-									id="senha"
-									name="senha"
-									inputMode="numeric"
-									maxLength={20}
-									placeholder="00000000000000000000"
-									value={senha}
-									aria-describedby={senhaErro ? 'senha-error' : undefined}
-									aria-invalid={senhaErro}
-									onChange={(event) => {
-										const value = event.target.value
-											.replace(/\D/g, '')
-											.slice(0, 20)
-
-										setValue('senha', value, {
-											shouldValidate: true,
-											shouldDirty: true,
-											shouldTouch: true,
-										})
-									}}
-									className={
-										senhaErro
-											? 'border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500'
-											: senhaValida
-												? 'border-green-500 focus-visible:border-green-500 focus-visible:ring-green-500'
-												: ''
-									}
-								/>
-
-								{senhaErro && (
-									<p
-										id="senha-error"
-										className="text-xs font-medium text-red-500"
-									>
-										{errors.senha?.message}
-									</p>
-								)}
-							</div>
-
-							<div className="space-y-1">
-								<Label htmlFor="dataValidadeSenha">
-									6. Data de Validade da Senha
-								</Label>
-
-								<Input
-									id="dataValidadeSenha"
-									name="dataValidadeSenha"
-									inputMode="numeric"
-									maxLength={8}
-									placeholder="DDMMAAAA"
-									value={dataValidadeSenha}
-									aria-describedby={
-										dataValidadeSenhaErro
-											? 'dataValidadeSenha-error'
-											: undefined
-									}
-									aria-invalid={dataValidadeSenhaErro}
-									onChange={(event) => {
-										const value = event.target.value
-											.replace(/\D/g, '')
-											.slice(0, 8)
-
-										setValue('dataValidadeSenha', value, {
-											shouldValidate: true,
-											shouldDirty: true,
-											shouldTouch: true,
-										})
-									}}
-									className={
-										dataValidadeSenhaErro
-											? 'border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500'
-											: dataValidadeSenhaValida
-												? 'border-green-500 focus-visible:border-green-500 focus-visible:ring-green-500'
-												: ''
-									}
-								/>
-
-								{dataValidadeSenhaErro && (
-									<p
-										id="dataValidadeSenha-error"
-										className="text-xs font-medium text-red-500"
-									>
-										{errors.dataValidadeSenha?.message}
-									</p>
-								)}
-							</div>
-
-							<div className="space-y-1">
-								<Label htmlFor="numeroGuiaOperadora">
-									7. Número da Guia Atribuído pela Operadora
-								</Label>
-
-								<Input
-									id="numeroGuiaOperadora"
-									name="numeroGuiaOperadora"
-									inputMode="numeric"
-									maxLength={20}
-									placeholder="00000000000000000000"
-									value={numeroGuiaOperadora}
-									aria-describedby={
-										numeroGuiaOperadoraErro
-											? 'numeroGuiaOperadora-error'
-											: undefined
-									}
-									aria-invalid={numeroGuiaOperadoraErro}
-									onChange={(event) => {
-										const value = event.target.value
-											.replace(/\D/g, '')
-											.slice(0, 20)
-
-										setValue('numeroGuiaOperadora', value, {
-											shouldValidate: true,
-											shouldDirty: true,
-											shouldTouch: true,
-										})
-									}}
-									className={
-										numeroGuiaOperadoraErro
-											? 'border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500'
-											: numeroGuiaOperadoraValido
-												? 'border-green-500 focus-visible:border-green-500 focus-visible:ring-green-500'
-												: ''
-									}
-								/>
-
-								{numeroGuiaOperadoraErro && (
-									<p
-										id="numeroGuiaOperadora-error"
-										className="text-xs font-medium text-red-500"
-									>
-										{errors.numeroGuiaOperadora?.message}
-									</p>
-								)}
-							</div>
+							))}
 						</form>
 					</div>
 				</aside>
