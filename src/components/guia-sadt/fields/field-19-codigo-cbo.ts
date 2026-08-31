@@ -18,7 +18,7 @@ export const codigoCBOField: GuiaSadtFieldDefinition = {
 		{
 			id: 'codigoCBO',
 			x: 1028,
-			y: 343,
+			y: 336,
 			width: 120,
 			height: 21,
 			length: 6,

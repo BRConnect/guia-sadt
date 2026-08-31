@@ -19,8 +19,8 @@ export const nomeProfissionalSolicitanteField: GuiaSadtFieldDefinition = {
 	overlayFields: [
 		{
 			id: 'nomeProfissionalSolicitante',
-			x: 53,
-			y: 343,
+			x: 55,
+			y: 336,
 			width: 465,
 			height: 21,
 			fontSize: 14,

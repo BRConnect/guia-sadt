@@ -18,7 +18,7 @@ export const codigoOperadoraField: GuiaSadtFieldDefinition = {
 		{
 			id: 'codigoOperadora',
 			x: 53,
-			y: 290,
+			y: 286,
 			width: 280,
 			height: 21,
 			length: 14,

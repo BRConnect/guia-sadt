@@ -24,7 +24,7 @@ export const ufField: GuiaSadtFieldDefinition = {
 		{
 			id: 'uf',
 			x: 964,
-			y: 343,
+			y: 336,
 			width: 40,
 			height: 21,
 			length: 2,

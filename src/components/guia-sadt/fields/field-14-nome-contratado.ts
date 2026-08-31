@@ -6,19 +6,19 @@ export const nomeContratadoField: GuiaSadtFieldDefinition = {
 	name: 'nomeContratado',
 	label: '14. Nome do Contratado',
 	placeholder: 'Nome do contratado',
-	maxLength: 150,
+	maxLength: 188,
 	inputType: 'text',
-	normalizeValue: (value) => value.slice(0, 150),
+	normalizeValue: (value) => value.slice(0, 188),
 	schema: z
 		.string()
 		.trim()
-		.max(150, 'O Nome do Contratado deve conter no máximo 150 caracteres.'),
+		.max(188, 'O Nome do Contratado deve conter no máximo 188 caracteres.'),
 	overlayFields: [
 		{
 			id: 'nomeContratado',
-			x: 478,
-			y: 290,
-			width: 1151,
+			x: 358,
+			y: 286,
+			width: 1270,
 			height: 21,
 			fontSize: 14,
 			fontWeight: 500,

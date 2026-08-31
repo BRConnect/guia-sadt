@@ -18,7 +18,7 @@ export const conselhoProfissionalField: GuiaSadtFieldDefinition = {
 		{
 			id: 'conselhoProfissional',
 			x: 564,
-			y: 343,
+			y: 336,
 			width: 40,
 			height: 21,
 			length: 2,

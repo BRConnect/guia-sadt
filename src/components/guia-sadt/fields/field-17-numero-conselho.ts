@@ -18,7 +18,7 @@ export const numeroConselhoField: GuiaSadtFieldDefinition = {
 		{
 			id: 'numeroConselho',
 			x: 640,
-			y: 343,
+			y: 336,
 			width: 300,
 			height: 21,
 			length: 15,
