@@ -15,8 +15,8 @@ export const tecnicaField: GuiaSadtFieldDefinition = {
 	overlayFields: [
 		{
 			id: 'tecnica-1',
-			x: 1170,
-			y: 663,
+			x: 1118,
+			y: 725,
 			width: 45,
 			height: 21,
 			length: 2,
@@ -28,8 +28,8 @@ export const tecnicaField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'tecnica-2',
-			x: 1170,
-			y: 684,
+			x: 1118,
+			y: 746,
 			width: 45,
 			height: 21,
 			length: 2,
@@ -41,8 +41,8 @@ export const tecnicaField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'tecnica-3',
-			x: 1170,
-			y: 705,
+			x: 1118,
+			y: 766,
 			width: 45,
 			height: 21,
 			length: 2,
@@ -54,8 +54,8 @@ export const tecnicaField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'tecnica-4',
-			x: 1170,
-			y: 726,
+			x: 1118,
+			y: 788,
 			width: 45,
 			height: 21,
 			length: 2,
@@ -67,8 +67,8 @@ export const tecnicaField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'tecnica-5',
-			x: 1170,
-			y: 747,
+			x: 1118,
+			y: 808,
 			width: 45,
 			height: 21,
 			length: 2,

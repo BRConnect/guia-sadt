@@ -15,8 +15,8 @@ export const quantidadeExecutadaField: GuiaSadtFieldDefinition = {
 	overlayFields: [
 		{
 			id: 'quantidadeExecutada-1',
-			x: 1035,
-			y: 663,
+			x: 1014,
+			y: 725,
 			width: 60,
 			height: 21,
 			length: 3,
@@ -28,8 +28,8 @@ export const quantidadeExecutadaField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'quantidadeExecutada-2',
-			x: 1035,
-			y: 684,
+			x: 1014,
+			y: 746,
 			width: 60,
 			height: 21,
 			length: 3,
@@ -41,8 +41,8 @@ export const quantidadeExecutadaField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'quantidadeExecutada-3',
-			x: 1035,
-			y: 705,
+			x: 1014,
+			y: 766,
 			width: 60,
 			height: 21,
 			length: 3,
@@ -54,8 +54,8 @@ export const quantidadeExecutadaField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'quantidadeExecutada-4',
-			x: 1035,
-			y: 726,
+			x: 1014,
+			y: 788,
 			width: 60,
 			height: 21,
 			length: 3,
@@ -67,8 +67,8 @@ export const quantidadeExecutadaField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'quantidadeExecutada-5',
-			x: 1035,
-			y: 747,
+			x: 1014,
+			y: 808,
 			width: 60,
 			height: 21,
 			length: 3,

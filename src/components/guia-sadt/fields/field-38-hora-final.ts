@@ -16,7 +16,7 @@ export const horaFinalField: GuiaSadtFieldDefinition = {
 		{
 			id: 'horaFinal-1',
 			x: 355,
-			y: 663,
+			y: 725,
 			width: 95,
 			height: 21,
 			length: 4,
@@ -29,7 +29,7 @@ export const horaFinalField: GuiaSadtFieldDefinition = {
 		{
 			id: 'horaFinal-2',
 			x: 355,
-			y: 684,
+			y: 746,
 			width: 95,
 			height: 21,
 			length: 4,
@@ -42,7 +42,7 @@ export const horaFinalField: GuiaSadtFieldDefinition = {
 		{
 			id: 'horaFinal-3',
 			x: 355,
-			y: 705,
+			y: 766,
 			width: 95,
 			height: 21,
 			length: 4,
@@ -55,7 +55,7 @@ export const horaFinalField: GuiaSadtFieldDefinition = {
 		{
 			id: 'horaFinal-4',
 			x: 355,
-			y: 726,
+			y: 788,
 			width: 95,
 			height: 21,
 			length: 4,
@@ -68,7 +68,7 @@ export const horaFinalField: GuiaSadtFieldDefinition = {
 		{
 			id: 'horaFinal-5',
 			x: 355,
-			y: 747,
+			y: 808,
 			width: 95,
 			height: 21,
 			length: 4,

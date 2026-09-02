@@ -15,8 +15,8 @@ export const fatorReducaoAcrescimoField: GuiaSadtFieldDefinition = {
 	overlayFields: [
 		{
 			id: 'fatorReducaoAcrescimo-1',
-			x: 1230,
-			y: 663,
+			x: 1184,
+			y: 725,
 			width: 70,
 			height: 21,
 			length: 3,
@@ -28,8 +28,8 @@ export const fatorReducaoAcrescimoField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'fatorReducaoAcrescimo-2',
-			x: 1230,
-			y: 684,
+			x: 1184,
+			y: 746,
 			width: 70,
 			height: 21,
 			length: 3,
@@ -41,8 +41,8 @@ export const fatorReducaoAcrescimoField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'fatorReducaoAcrescimo-3',
-			x: 1230,
-			y: 705,
+			x: 1184,
+			y: 766,
 			width: 70,
 			height: 21,
 			length: 3,
@@ -54,8 +54,8 @@ export const fatorReducaoAcrescimoField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'fatorReducaoAcrescimo-4',
-			x: 1230,
-			y: 726,
+			x: 1184,
+			y: 788,
 			width: 70,
 			height: 21,
 			length: 3,
@@ -67,8 +67,8 @@ export const fatorReducaoAcrescimoField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'fatorReducaoAcrescimo-5',
-			x: 1230,
-			y: 747,
+			x: 1184,
+			y: 808,
 			width: 70,
 			height: 21,
 			length: 3,

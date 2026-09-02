@@ -6,11 +6,11 @@ export const descricaoProcedimentoField: GuiaSadtFieldDefinition = {
 	name: 'descricaoProcedimento',
 	label: '41. Descrição',
 	placeholder: 'Descrição do procedimento',
-	maxLength: 354,
+	maxLength: 170,
 	rows: 5,
-	lineMaxLength: 70,
+	lineMaxLength: 34,
 	inputType: 'text',
-	normalizeValue: (value) => value.slice(0, 70),
+	normalizeValue: (value) => value.slice(0, 34),
 	schema: z
 		.string()
 		.trim()
@@ -18,8 +18,8 @@ export const descricaoProcedimentoField: GuiaSadtFieldDefinition = {
 	overlayFields: [
 		{
 			id: 'descricaoProcedimento-1',
-			x: 745,
-			y: 663,
+			x: 733,
+			y: 725,
 			width: 275,
 			height: 21,
 			fontSize: 14,
@@ -29,8 +29,8 @@ export const descricaoProcedimentoField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'descricaoProcedimento-2',
-			x: 745,
-			y: 684,
+			x: 733,
+			y: 746,
 			width: 275,
 			height: 21,
 			fontSize: 14,
@@ -40,8 +40,8 @@ export const descricaoProcedimentoField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'descricaoProcedimento-3',
-			x: 745,
-			y: 705,
+			x: 733,
+			y: 766,
 			width: 275,
 			height: 21,
 			fontSize: 14,
@@ -51,8 +51,8 @@ export const descricaoProcedimentoField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'descricaoProcedimento-4',
-			x: 745,
-			y: 726,
+			x: 733,
+			y: 788,
 			width: 275,
 			height: 21,
 			fontSize: 14,
@@ -62,8 +62,8 @@ export const descricaoProcedimentoField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'descricaoProcedimento-5',
-			x: 745,
-			y: 747,
+			x: 733,
+			y: 808,
 			width: 275,
 			height: 21,
 			fontSize: 14,
