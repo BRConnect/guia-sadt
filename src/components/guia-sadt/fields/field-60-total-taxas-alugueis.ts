@@ -6,19 +6,19 @@ export const totalTaxasAlugueisField: GuiaSadtFieldDefinition = {
 	name: 'totalTaxasAlugueis',
 	label: '60. Total de Taxas e Aluguéis (R$)',
 	placeholder: '000000000',
-	maxLength: 9,
+	maxLength: 10,
 	schema: z
 		.string()
 		.trim()
-		.max(9, 'O campo 60 deve conter no máximo 9 caracteres.'),
+		.max(10, 'O campo 60 deve conter no máximo 10 caracteres.'),
 	overlayFields: [
 		{
 			id: 'totalTaxasAlugueis',
-			x: 285,
-			y: 1058,
-			width: 215,
+			x: 278,
+			y: 1100,
+			width: 208,
 			height: 21,
-			length: 9,
+			length: 10,
 			gap: 0,
 			fontSize: 14,
 			fontWeight: 500,

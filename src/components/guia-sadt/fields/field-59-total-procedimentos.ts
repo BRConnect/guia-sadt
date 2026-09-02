@@ -6,19 +6,19 @@ export const totalProcedimentosField: GuiaSadtFieldDefinition = {
 	name: 'totalProcedimentos',
 	label: '59. Total de Procedimentos (R$)',
 	placeholder: '000000000',
-	maxLength: 9,
+	maxLength: 10,
 	schema: z
 		.string()
 		.trim()
-		.max(9, 'O campo 59 deve conter no máximo 9 caracteres.'),
+		.max(10, 'O campo 59 deve conter no máximo 10 caracteres.'),
 	overlayFields: [
 		{
 			id: 'totalProcedimentos',
-			x: 53,
-			y: 1058,
-			width: 215,
+			x: 51,
+			y: 1100,
+			width: 208,
 			height: 21,
-			length: 9,
+			length: 10,
 			gap: 0,
 			fontSize: 14,
 			fontWeight: 500,
