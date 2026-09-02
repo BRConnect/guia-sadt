@@ -7,7 +7,7 @@ export const sequencialReferenciaField: GuiaSadtFieldDefinition = {
 	label: '49. Grau Part',
 	placeholder: '00',
 	maxLength: 14,
-	rows: 5,
+	rows: 4,
 	schema: z
 		.string()
 		.trim()
@@ -15,9 +15,9 @@ export const sequencialReferenciaField: GuiaSadtFieldDefinition = {
 	overlayFields: [
 		{
 			id: 'sequencialReferencia-1',
-			x: 120,
-			y: 803,
-			width: 55,
+			x: 123,
+			y: 883,
+			width: 40,
 			height: 21,
 			length: 2,
 			gap: 0,
@@ -28,9 +28,9 @@ export const sequencialReferenciaField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'sequencialReferencia-2',
-			x: 120,
-			y: 824,
-			width: 55,
+			x: 123,
+			y: 903,
+			width: 40,
 			height: 21,
 			length: 2,
 			gap: 0,
@@ -41,9 +41,9 @@ export const sequencialReferenciaField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'sequencialReferencia-3',
-			x: 120,
-			y: 845,
-			width: 55,
+			x: 123,
+			y: 924,
+			width: 40,
 			height: 21,
 			length: 2,
 			gap: 0,
@@ -54,22 +54,9 @@ export const sequencialReferenciaField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'sequencialReferencia-4',
-			x: 120,
-			y: 866,
-			width: 55,
-			height: 21,
-			length: 2,
-			gap: 0,
-			fontSize: 14,
-			fontWeight: 500,
-			align: 'center',
-			type: 'number',
-		},
-		{
-			id: 'sequencialReferencia-5',
-			x: 120,
-			y: 887,
-			width: 55,
+			x: 123,
+			y: 943,
+			width: 40,
 			height: 21,
 			length: 2,
 			gap: 0,

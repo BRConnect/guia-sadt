@@ -7,7 +7,7 @@ export const numeroConselhoExecutanteField: GuiaSadtFieldDefinition = {
 	label: '53. Número no Conselho',
 	placeholder: '000000000000000',
 	maxLength: 79,
-	rows: 5,
+	rows: 4,
 	schema: z
 		.string()
 		.trim()
@@ -15,9 +15,9 @@ export const numeroConselhoExecutanteField: GuiaSadtFieldDefinition = {
 	overlayFields: [
 		{
 			id: 'numeroConselhoExecutante-1',
-			x: 1125,
-			y: 803,
-			width: 250,
+			x: 1145,
+			y: 883,
+			width: 300,
 			height: 21,
 			length: 15,
 			gap: 0,
@@ -28,9 +28,9 @@ export const numeroConselhoExecutanteField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'numeroConselhoExecutante-2',
-			x: 1125,
-			y: 824,
-			width: 250,
+			x: 1145,
+			y: 903,
+			width: 300,
 			height: 21,
 			length: 15,
 			gap: 0,
@@ -41,9 +41,9 @@ export const numeroConselhoExecutanteField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'numeroConselhoExecutante-3',
-			x: 1125,
-			y: 845,
-			width: 250,
+			x: 1145,
+			y: 924,
+			width: 300,
 			height: 21,
 			length: 15,
 			gap: 0,
@@ -54,22 +54,9 @@ export const numeroConselhoExecutanteField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'numeroConselhoExecutante-4',
-			x: 1125,
-			y: 866,
-			width: 250,
-			height: 21,
-			length: 15,
-			gap: 0,
-			fontSize: 14,
-			fontWeight: 500,
-			align: 'center',
-			type: 'number',
-		},
-		{
-			id: 'numeroConselhoExecutante-5',
-			x: 1125,
-			y: 887,
-			width: 250,
+			x: 1145,
+			y: 943,
+			width: 300,
 			height: 21,
 			length: 15,
 			gap: 0,

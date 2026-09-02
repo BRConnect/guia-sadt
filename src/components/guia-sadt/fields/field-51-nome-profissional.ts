@@ -7,10 +7,10 @@ export const nomeProfissionalField: GuiaSadtFieldDefinition = {
 	label: '51. Nome do Profissional',
 	placeholder: 'Nome do profissional',
 	maxLength: 354,
-	rows: 5,
-	lineMaxLength: 70,
+	rows: 4,
+	lineMaxLength: 80,
 	inputType: 'text',
-	normalizeValue: (value) => value.slice(0, 70),
+	normalizeValue: (value) => value.slice(0, 80),
 	schema: z
 		.string()
 		.trim()
@@ -19,7 +19,7 @@ export const nomeProfissionalField: GuiaSadtFieldDefinition = {
 		{
 			id: 'nomeProfissional-1',
 			x: 490,
-			y: 803,
+			y: 883,
 			width: 555,
 			height: 21,
 			fontSize: 14,
@@ -30,7 +30,7 @@ export const nomeProfissionalField: GuiaSadtFieldDefinition = {
 		{
 			id: 'nomeProfissional-2',
 			x: 490,
-			y: 824,
+			y: 903,
 			width: 555,
 			height: 21,
 			fontSize: 14,
@@ -41,7 +41,7 @@ export const nomeProfissionalField: GuiaSadtFieldDefinition = {
 		{
 			id: 'nomeProfissional-3',
 			x: 490,
-			y: 845,
+			y: 924,
 			width: 555,
 			height: 21,
 			fontSize: 14,
@@ -52,18 +52,7 @@ export const nomeProfissionalField: GuiaSadtFieldDefinition = {
 		{
 			id: 'nomeProfissional-4',
 			x: 490,
-			y: 866,
-			width: 555,
-			height: 21,
-			fontSize: 14,
-			fontWeight: 500,
-			align: 'left',
-			type: 'text',
-		},
-		{
-			id: 'nomeProfissional-5',
-			x: 490,
-			y: 887,
+			y: 943,
 			width: 555,
 			height: 21,
 			fontSize: 14,

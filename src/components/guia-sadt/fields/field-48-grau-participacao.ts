@@ -7,7 +7,7 @@ export const grauParticipacaoField: GuiaSadtFieldDefinition = {
 	label: '48. Seq.Ref.',
 	placeholder: '00',
 	maxLength: 14,
-	rows: 5,
+	rows: 4,
 	schema: z
 		.string()
 		.trim()
@@ -16,7 +16,7 @@ export const grauParticipacaoField: GuiaSadtFieldDefinition = {
 		{
 			id: 'grauParticipacao-1',
 			x: 50,
-			y: 803,
+			y: 883,
 			width: 46,
 			height: 21,
 			length: 2,
@@ -29,7 +29,7 @@ export const grauParticipacaoField: GuiaSadtFieldDefinition = {
 		{
 			id: 'grauParticipacao-2',
 			x: 50,
-			y: 824,
+			y: 903,
 			width: 46,
 			height: 21,
 			length: 2,
@@ -42,7 +42,7 @@ export const grauParticipacaoField: GuiaSadtFieldDefinition = {
 		{
 			id: 'grauParticipacao-3',
 			x: 50,
-			y: 845,
+			y: 924,
 			width: 46,
 			height: 21,
 			length: 2,
@@ -54,19 +54,6 @@ export const grauParticipacaoField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'grauParticipacao-4',
-			x: 50,
-			y: 866,
-			width: 46,
-			height: 21,
-			length: 2,
-			gap: 0,
-			fontSize: 14,
-			fontWeight: 500,
-			align: 'center',
-			type: 'number',
-		},
-		{
-			id: 'grauParticipacao-5',
 			x: 50,
 			y: 943,
 			width: 46,

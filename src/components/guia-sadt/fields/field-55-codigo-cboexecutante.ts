@@ -7,7 +7,7 @@ export const codigoCBOExecutanteField: GuiaSadtFieldDefinition = {
 	label: '55. Código CBO',
 	placeholder: '000000',
 	maxLength: 34,
-	rows: 5,
+	rows: 4,
 	schema: z
 		.string()
 		.trim()
@@ -15,9 +15,9 @@ export const codigoCBOExecutanteField: GuiaSadtFieldDefinition = {
 	overlayFields: [
 		{
 			id: 'codigoCBOExecutante-1',
-			x: 1450,
-			y: 803,
-			width: 125,
+			x: 1504,
+			y: 883,
+			width: 120,
 			height: 21,
 			length: 6,
 			gap: 0,
@@ -28,9 +28,9 @@ export const codigoCBOExecutanteField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'codigoCBOExecutante-2',
-			x: 1450,
-			y: 824,
-			width: 125,
+			x: 1504,
+			y: 903,
+			width: 120,
 			height: 21,
 			length: 6,
 			gap: 0,
@@ -41,9 +41,9 @@ export const codigoCBOExecutanteField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'codigoCBOExecutante-3',
-			x: 1450,
-			y: 845,
-			width: 125,
+			x: 1504,
+			y: 924,
+			width: 120,
 			height: 21,
 			length: 6,
 			gap: 0,
@@ -54,22 +54,9 @@ export const codigoCBOExecutanteField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'codigoCBOExecutante-4',
-			x: 1450,
-			y: 866,
-			width: 125,
-			height: 21,
-			length: 6,
-			gap: 0,
-			fontSize: 14,
-			fontWeight: 500,
-			align: 'center',
-			type: 'number',
-		},
-		{
-			id: 'codigoCBOExecutante-5',
-			x: 1450,
-			y: 887,
-			width: 125,
+			x: 1504,
+			y: 943,
+			width: 120,
 			height: 21,
 			length: 6,
 			gap: 0,
