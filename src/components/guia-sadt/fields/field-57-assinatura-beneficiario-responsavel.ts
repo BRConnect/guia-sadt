@@ -2,16 +2,16 @@ import { z } from 'zod'
 
 import type { GuiaSadtFieldDefinition } from './types'
 
-const SIGNATURE_COLUMN_X = [260, 580, 900, 1220, 1540]
-const ROW_Y = [923, 944]
+const SIGNATURE_COLUMN_X = [250, 566, 882, 1198, 1514]
+const ROW_Y = [988, 1008]
 
 export const assinaturaBeneficiarioResponsavelField: GuiaSadtFieldDefinition = {
 	name: 'assinaturaBeneficiarioResponsavel',
 	label: '57. Assinatura do Beneficiário ou Responsável',
 	placeholder: 'Nome para assinatura',
-	maxLength: 67,
+	maxLength: 14,
 	rows: 10,
-	lineMaxLength: 67,
+	lineMaxLength: 14,
 	inputType: 'text',
 	normalizeValue: (value) => value.slice(0, 679),
 	schema: z

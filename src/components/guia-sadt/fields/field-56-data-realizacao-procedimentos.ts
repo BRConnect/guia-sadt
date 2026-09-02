@@ -1,8 +1,8 @@
 import { createDateSchema } from './date-schema'
 import type { GuiaSadtFieldDefinition } from './types'
 
-const DATA_COLUMN_X = [70, 390, 710, 1030, 1350]
-const ROW_Y = [923, 944]
+const DATA_COLUMN_X = [64, 380, 697, 1013, 1329]
+const ROW_Y = [988, 1008]
 
 export const dataRealizacaoProcedimentosField: GuiaSadtFieldDefinition = {
 	name: 'dataRealizacaoProcedimentos',
@@ -20,7 +20,7 @@ export const dataRealizacaoProcedimentosField: GuiaSadtFieldDefinition = {
 			id: `dataRealizacaoProcedimentos-${columnIndex * 2 + rowIndex + 1}`,
 			x,
 			y,
-			width: 190,
+			width: 180,
 			height: 21,
 			length: 8,
 			gap: 0,
