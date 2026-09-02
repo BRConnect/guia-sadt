@@ -6,18 +6,18 @@ export const assinaturaContratadoField: GuiaSadtFieldDefinition = {
 	name: 'assinaturaContratado',
 	label: '68. Assinatura do Contratado',
 	placeholder: 'Nome para assinatura',
-	maxLength: 67,
+	maxLength: 74,
 	inputType: 'text',
-	normalizeValue: (value) => value.slice(0, 67),
+	normalizeValue: (value) => value.slice(0, 74),
 	schema: z
 		.string()
 		.trim()
-		.max(67, 'O campo 68 deve conter no máximo 67 caracteres.'),
+		.max(74, 'O campo 68 deve conter no máximo 74 caracteres.'),
 	overlayFields: [
 		{
 			id: 'assinaturaContratado',
 			x: 1125,
-			y: 1105,
+			y: 1142,
 			width: 505,
 			height: 21,
 			fontSize: 14,
