@@ -6,13 +6,13 @@ export const nomeField: GuiaSadtFieldDefinition = {
 	name: 'nome',
 	label: '10. Nome',
 	placeholder: 'Nome completo',
-	maxLength: 70,
+	maxLength: 62,
 	inputType: 'text',
-	normalizeValue: (value) => value.slice(0, 70),
+	normalizeValue: (value) => value.slice(0, 62),
 	schema: z
 		.string()
 		.trim()
-		.max(70, 'O Nome deve conter no máximo 70 caracteres.'),
+		.max(62, 'O Nome deve conter no máximo 62 caracteres.'),
 	overlayFields: [
 		{
 			id: 'nome',

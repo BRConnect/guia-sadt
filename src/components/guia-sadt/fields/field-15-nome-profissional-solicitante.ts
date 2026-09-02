@@ -6,15 +6,15 @@ export const nomeProfissionalSolicitanteField: GuiaSadtFieldDefinition = {
 	name: 'nomeProfissionalSolicitante',
 	label: '15. Nome do Profissional Solicitante',
 	placeholder: 'Nome do profissional solicitante',
-	maxLength: 60,
+	maxLength: 59,
 	inputType: 'text',
-	normalizeValue: (value) => value.slice(0, 60),
+	normalizeValue: (value) => value.slice(0, 59),
 	schema: z
 		.string()
 		.trim()
 		.max(
-			60,
-			'O Nome do Profissional Solicitante deve conter no máximo 60 caracteres.',
+			59,
+			'O Nome do Profissional Solicitante deve conter no máximo 59 caracteres.',
 		),
 	overlayFields: [
 		{

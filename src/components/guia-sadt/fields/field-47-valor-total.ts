@@ -1,0 +1,86 @@
+import { z } from 'zod'
+
+import type { GuiaSadtFieldDefinition } from './types'
+
+export const valorTotalField: GuiaSadtFieldDefinition = {
+	name: 'valorTotal',
+	label: '47. Valor Total (R$)',
+	placeholder: '000000000',
+	maxLength: 49,
+	rows: 5,
+	schema: z
+		.string()
+		.trim()
+		.max(49, 'O campo 47 deve conter no máximo 49 caracteres.'),
+	overlayFields: [
+		{
+			id: 'valorTotal-1',
+			x: 1485,
+			y: 663,
+			width: 145,
+			height: 21,
+			length: 9,
+			gap: 0,
+			fontSize: 14,
+			fontWeight: 500,
+			align: 'center',
+			type: 'number',
+		},
+		{
+			id: 'valorTotal-2',
+			x: 1485,
+			y: 684,
+			width: 145,
+			height: 21,
+			length: 9,
+			gap: 0,
+			fontSize: 14,
+			fontWeight: 500,
+			align: 'center',
+			type: 'number',
+		},
+		{
+			id: 'valorTotal-3',
+			x: 1485,
+			y: 705,
+			width: 145,
+			height: 21,
+			length: 9,
+			gap: 0,
+			fontSize: 14,
+			fontWeight: 500,
+			align: 'center',
+			type: 'number',
+		},
+		{
+			id: 'valorTotal-4',
+			x: 1485,
+			y: 726,
+			width: 145,
+			height: 21,
+			length: 9,
+			gap: 0,
+			fontSize: 14,
+			fontWeight: 500,
+			align: 'center',
+			type: 'number',
+		},
+		{
+			id: 'valorTotal-5',
+			x: 1485,
+			y: 747,
+			width: 145,
+			height: 21,
+			length: 9,
+			gap: 0,
+			fontSize: 14,
+			fontWeight: 500,
+			align: 'center',
+			type: 'number',
+		},
+	],
+	getOverlayValue: (overlayId, value) => {
+		const index = Number(overlayId.split('-').pop()) - 1
+		return value.split('|')[index] ?? ''
+	},
+}

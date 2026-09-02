@@ -6,13 +6,13 @@ export const assinaturaProfissionalField: GuiaSadtFieldDefinition = {
 	name: 'assinaturaProfissionalSolicitante',
 	label: '20. Assinatura do Profissional Solicitante',
 	placeholder: 'Nome para assinatura',
-	maxLength: 67,
+	maxLength: 58,
 	inputType: 'text',
-	normalizeValue: (value) => value.slice(0, 67),
+	normalizeValue: (value) => value.slice(0, 58),
 	schema: z
 		.string()
 		.trim()
-		.max(67, 'A Assinatura deve conter no máximo 67 caracteres.'),
+		.max(58, 'A Assinatura deve conter no máximo 58 caracteres.'),
 	overlayFields: [
 		{
 			id: 'assinaturaProfissionalSolicitante',

@@ -1,5 +1,4 @@
-import { z } from 'zod'
-
+import { createDateSchema } from './date-schema'
 import type { GuiaSadtFieldDefinition } from './types'
 
 export const dataValidadeSenhaField: GuiaSadtFieldDefinition = {
@@ -7,13 +6,7 @@ export const dataValidadeSenhaField: GuiaSadtFieldDefinition = {
 	label: '6. Data de Validade da Senha',
 	placeholder: 'DDMMAAAA',
 	maxLength: 8,
-	schema: z
-		.string()
-		.trim()
-		.refine(
-			(value) => value === '' || /^\d{8}$/.test(value),
-			'A Data de Validade da Senha deve conter 8 dígitos no formato DDMMAAAA.',
-		),
+	schema: createDateSchema('A Data de Validade da Senha'),
 	overlayFields: [
 		{
 			id: 'dataValidadeSenhaDia',
