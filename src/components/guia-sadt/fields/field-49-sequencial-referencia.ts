@@ -4,7 +4,7 @@ import type { GuiaSadtFieldDefinition } from './types'
 
 export const sequencialReferenciaField: GuiaSadtFieldDefinition = {
 	name: 'sequencialReferencia',
-	label: '49. Seq.Ref.',
+	label: '49. Grau Part',
 	placeholder: '00',
 	maxLength: 14,
 	rows: 5,

@@ -6,7 +6,7 @@ export const tipoConsultaField: GuiaSadtFieldDefinition = {
 	name: 'tipoConsulta',
 	label: '34. Tipo de Consulta',
 	placeholder: '00',
-	maxLength: 2,
+	maxLength: 1,
 	schema: z
 		.string()
 		.trim()
@@ -14,11 +14,11 @@ export const tipoConsultaField: GuiaSadtFieldDefinition = {
 	overlayFields: [
 		{
 			id: 'tipoConsulta',
-			x: 586,
+			x: 570,
 			y: 660,
 			width: 65,
 			height: 21,
-			length: 2,
+			length: 1,
 			gap: 0,
 			fontSize: 14,
 			fontWeight: 500,

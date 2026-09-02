@@ -4,7 +4,7 @@ import type { GuiaSadtFieldDefinition } from './types'
 
 export const grauParticipacaoField: GuiaSadtFieldDefinition = {
 	name: 'grauParticipacao',
-	label: '48. Grau Part.',
+	label: '48. Seq.Ref.',
 	placeholder: '00',
 	maxLength: 14,
 	rows: 5,
@@ -15,9 +15,9 @@ export const grauParticipacaoField: GuiaSadtFieldDefinition = {
 	overlayFields: [
 		{
 			id: 'grauParticipacao-1',
-			x: 53,
+			x: 50,
 			y: 803,
-			width: 55,
+			width: 46,
 			height: 21,
 			length: 2,
 			gap: 0,
@@ -28,9 +28,9 @@ export const grauParticipacaoField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'grauParticipacao-2',
-			x: 53,
+			x: 50,
 			y: 824,
-			width: 55,
+			width: 46,
 			height: 21,
 			length: 2,
 			gap: 0,
@@ -41,9 +41,9 @@ export const grauParticipacaoField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'grauParticipacao-3',
-			x: 53,
+			x: 50,
 			y: 845,
-			width: 55,
+			width: 46,
 			height: 21,
 			length: 2,
 			gap: 0,
@@ -54,9 +54,9 @@ export const grauParticipacaoField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'grauParticipacao-4',
-			x: 53,
+			x: 50,
 			y: 866,
-			width: 55,
+			width: 46,
 			height: 21,
 			length: 2,
 			gap: 0,
@@ -67,9 +67,9 @@ export const grauParticipacaoField: GuiaSadtFieldDefinition = {
 		},
 		{
 			id: 'grauParticipacao-5',
-			x: 53,
-			y: 887,
-			width: 55,
+			x: 50,
+			y: 943,
+			width: 46,
 			height: 21,
 			length: 2,
 			gap: 0,
