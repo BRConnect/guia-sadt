@@ -67,6 +67,11 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
 		<html
 			lang="pt-BR"
 			className={cn(
+				'flex',
+				'bg-background',
+				'overflow-hidden',
+				'flex-col',
+				'h-screen',
 				'h-full',
 				'antialiased',
 				geistSans.variable,
